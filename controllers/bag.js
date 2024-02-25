@@ -122,6 +122,7 @@ export const getNumOfPages = async (req, res) => {
         let jsonNumPage = JSON.stringify(numPages);
         return res.send(jsonNumPage);        
     }
+        
     catch (err) {
         return res.status(400).send("an error occurred " + err);
     }
