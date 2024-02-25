@@ -11,6 +11,7 @@ router.post("/", authAdmin, bagController.addBag);
 router.delete("/:id", authAdmin, bagController.deleteBag);
 router.put("/:id", authAdmin, bagController.updateBag);
 router.get("/num/page", bagController.getNumPages);
+router.get("/num/pages", bagController.getNumOfPages);
 
  
 export default router;
