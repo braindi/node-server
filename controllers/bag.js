@@ -116,17 +116,13 @@ export const getNumPages = async (req, res) => {
 
 export const getNumOfPages = async (req, res) => {
     try {
-
         let allBags = await Bag.countDocuments();
-        let perPage = req.query.perPage || 60;
-        // let jsonBag = JSON.stringify(allBags);
+        let perPage = req.query.perPage || 10;
         let numPages = Math.ceil(allBags / perPage)
         let jsonNumPage = JSON.stringify(numPages);
-
-        // return res.send(jsonBag);
-        return res.send(jsonNumPage);
-        
+        return res.send(jsonNumPage);        
     }
     catch (err) {
         return res.status(400).send("an error occurred " + err);
     }
+}
