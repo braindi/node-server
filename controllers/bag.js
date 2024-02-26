@@ -117,7 +117,7 @@ export const getNumPages = async (req, res) => {
 export const getNumOfPages = async (req, res) => {
     try {
         let allBags = await Bag.countDocuments();
-        let perPage = req.query.perPage || 10;
+        let perPage = req.query.perPage || 12;
         let numPages = Math.ceil(allBags / perPage)
         let jsonNumPage = JSON.stringify(numPages);
         return res.send(jsonNumPage);        
