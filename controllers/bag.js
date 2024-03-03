@@ -55,7 +55,7 @@ export const addBag = async (req, res) => {
         let existBag = await Bag.find({ company, color, price, size });
         if (existBag.length > 0)
             return res.status(409).send("this bag already exists")
-        let newBag = await Bag.create({ company, description: description || "", color, price, size: size || "M", width: width || "", height: height || "", generateDate: generateDate || Date.now(), imgUrl: imgUrl || '_1_8_18465_1.jpg' });
+        let newBag = await Bag.create({ company, description: description || " ", color, price, size: size || "M", width: width || 0 , height: height || 0, generateDate: generateDate || Date.now(), imgUrl: imgUrl || '_1_8_18465_1.jpg' });
         return res.status(201).json(newBag);
     }
     catch (err) {
