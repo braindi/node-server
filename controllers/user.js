@@ -40,8 +40,9 @@ export const login = async (req, res) => {
         if (!findUser)
             return res.status(404).send("email does not exist");
             
-        let userPassword = bcrypt.compare(password, findUser.password);
-        if (!userPassword) 
+        // let userPassword = bcrypt.compare(password, findUser.password);
+        // if (!userPassword) 
+        if (!await bcrypt.compare(password, findUser.password))
             return res.status(404).send("wrong password");
         let { userName: u, _id, email: e, role, enterDate } = findUser;
         let token = createToken(findUser);
