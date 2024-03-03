@@ -45,7 +45,7 @@ export const getBagByCode = async (req, res) => {
 
 export const addBag = async (req, res) => {
 
-    let { company, description, color, price, size, length, width, height, generateDate, imgUrl } = req.body;
+    let { company, description, color, price, size, width, height, generateDate, imgUrl } = req.body;
     if (!company || !color || !price || !size)
         return res.status(404).send("missing require parameter");
     let validate = bagValidator(req.body);
@@ -55,7 +55,7 @@ export const addBag = async (req, res) => {
         let existBag = await Bag.find({ company, color, price, size });
         if (existBag.length > 0)
             return res.status(409).send("this bag already exists")
-        let newBag = await Bag.create({ company, description, color, price, size: size || "M", length, width, height, generateDate: generateDate || Date.now(), imgUrl: imgUrl || 'img1.webp' });
+        let newBag = await Bag.create({ company, description: description || "", color, price, size: size || "M", width: width || "", height: height || "", generateDate: generateDate || Date.now(), imgUrl: imgUrl || '_1_8_18465_1.jpg' });
         return res.status(201).json(newBag);
     }
     catch (err) {
@@ -86,7 +86,6 @@ export const updateBag = async (req, res) => {
         bagToUpdate.color = req.body.color || bagToUpdate.color;
         bagToUpdate.price = req.body.price || bagToUpdate.price;
         bagToUpdate.size = req.body.size || bagToUpdate.size;
-        bagToUpdate.length = req.body.length || bagToUpdate.length;
         bagToUpdate.width = req.body.width || bagToUpdate.width;
         bagToUpdate.height = req.body.height || bagToUpdate.height;
         bagToUpdate.imgUrl = req.body.imgUrl || bagToUpdate.imgUrl;
