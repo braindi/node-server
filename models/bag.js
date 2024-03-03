@@ -3,15 +3,14 @@ import Joi from "joi";
 
 const bagSchema = mongoose.Schema({
     company: String,
-    description: String,
+    description: { type: String, default: "" },
     color: String,
     price: Number,
     size: { type: String, default: "M" },
-    length: Number,
-    width: Number,
-    height: Number,
+    width: { type: Number, default : "" },
+    height: { type: Number, default : "" },
     generateDate: { type: Date, default: Date.now() },
-    imgUrl:{type: String,default:'img1.webp' }
+    imgUrl: { type: String, default: "_1_8_18465_1.jpg"}
    
 })
 
@@ -20,15 +19,14 @@ export const Bag = mongoose.model("bags", bagSchema);
 export const bagValidator = (bagToValidate) => {
     let bagJoi = Joi.object({
         company: Joi.string().min(2).max(15).required(),
-        description: Joi.string(),
+        description: Joi.string().default(""),
         color: Joi.string().required(),
         price: Joi.number().required(),
         size: Joi.string().default("M"),
-        length: Joi.number(),
-        width: Joi.number(),
-        height: Joi.number(),
+        width: Joi.number().default(""),
+        height: Joi.number().default(""),
         generateDate: Joi.date().default(Date.now()),
-        imgUrl:Joi.string().default('img1.webp')
+        imgUrl:Joi.string().default('_1_8_18465_1.jpg')
     }).unknown()
     return bagJoi.validate(bagToValidate);
 }
