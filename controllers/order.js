@@ -13,10 +13,10 @@ export const getAllOrders = async (req, res) => {
 }     
  
 export const addOrder = async (req, res) => {
-    let { forDate, address, arrProducts } = req.body;
-    let idUser = req.user._id;
-    if (!idUser)
-        return res.status(400).send("an error occurred ");
+    // let { forDate, address, arrProducts } = req.body;
+    // let idUser = req.user._id;
+    // if (!idUser)
+    //     return res.status(400).send("an error occurred ");
 
     let validate = addOrderValidator(req.body);
     if (validate.error)
