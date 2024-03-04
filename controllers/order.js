@@ -13,7 +13,8 @@ export const getAllOrders = async (req, res) => {
 }     
  
 export const addOrder = async (req, res) => {
-    // let { forDate, address, arrProducts } = req.body;
+    let { forDate, address, arrProducts, _id } = req.body;
+    let idUser =_id;
     // let idUser = req.user._id;
     // if (!idUser)
     //     return res.status(400).send("an error occurred ");
